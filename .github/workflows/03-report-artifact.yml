@@ -29,5 +29,5 @@ jobs:
         with:
           name: einfacher-report
           # HINWEIS: Hier ist ein Fehler. Prüfe, wo das Skript die Datei wirklich erstellt.
-          path: outputs/report.txt
+          path: output/report.txt
           if-no-files-found: error
