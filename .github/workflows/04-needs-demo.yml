@@ -55,7 +55,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           # HINWEIS: Hier ist ein Fehler. Vergleiche diesen Namen mit dem Upload im vorherigen Job.
-          name: anzahl
+          name: einfacher-report
+          # HINWEIS: Hier ist ein Fehler. Prüfe, wo das Skript die Datei wirklich erstellt.
           path: output/report.txt
 
       - name: Report erstellen
