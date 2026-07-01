@@ -21,4 +21,4 @@ jobs:
 
       - name: Dateien prüfen
         # HINWEIS: Hier ist ein Fehler. Vergleiche den Namen mit dem scripts Ordner.
-        run: bash scripts/02_check_file.sh
+        run: bash scripts/02_check_files.sh
