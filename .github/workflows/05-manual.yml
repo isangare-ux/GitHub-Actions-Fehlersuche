@@ -29,5 +29,6 @@ jobs:
         with:
           name: manuelle-nachricht
           # HINWEIS: Hier ist ein Fehler. Prüfe, welche Datei das Skript erstellt.
-          path: output/message.txt
+          #path: output/message.txt
+          path: output/manual_message.txt
           if-no-files-found: error
