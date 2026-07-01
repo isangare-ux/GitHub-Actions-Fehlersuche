@@ -27,7 +27,7 @@ jobs:
       - name: Report als Artefakt hochladen
         uses: actions/upload-artifact@v4
         with:
-          name: anzahl
+          name: einfacher-report
           # HINWEIS: Hier ist ein Fehler. Prüfe, wo das Skript die Datei wirklich erstellt.
           path: output/report.txt
           if-no-files-found: error
