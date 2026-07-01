@@ -2,15 +2,15 @@
 
 echo "Erstelle Report"
 
-mkdir -p output
+mkdir -p outputs
 
-if [ ! -f "output/anzahl.txt" ]; then
+if [ ! -f "outputs/anzahl.txt" ]; then
   bash scripts/03_count_names.sh
 fi
 
-anzahl=$(cat output/anzahl.txt)
+anzahl=$(cat outputs/anzahl.txt)
 
-cat > output/report.txt <<EOF
+cat > outputs/report.txt <<EOF
 Report zum Bash Projekt
 
 Anzahl der Namen: $anzahl
@@ -18,4 +18,4 @@ Anzahl der Namen: $anzahl
 Diese Datei wurde automatisch durch ein Shell Skript erstellt.
 EOF
 
-cat output/report.txt
+cat outputs/report.txt
