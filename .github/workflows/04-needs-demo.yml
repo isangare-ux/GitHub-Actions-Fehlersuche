@@ -56,7 +56,7 @@ jobs:
         with:
           # HINWEIS: Hier ist ein Fehler. Vergleiche diesen Namen mit dem Upload im vorherigen Job.
           name: anzahl
-          path: output
+          path: output/report.txt
 
       - name: Report erstellen
         run: bash scripts/04_create_report.sh
