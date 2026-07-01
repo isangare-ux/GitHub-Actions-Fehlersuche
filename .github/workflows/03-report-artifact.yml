@@ -1,0 +1,33 @@
+name: 03 Report und Artefakt
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/**"
+      - "scripts/**"
+      - ".github/workflows/03-report-artifact.yml"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skripte ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Report erstellen
+        run: bash scripts/04_create_report.sh
+
+      - name: Report als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: einfacher-report
+          # HINWEIS: Hier ist ein Fehler. Prüfe, wo das Skript die Datei wirklich erstellt.
+          path: outputs/report.txt
+          if-no-files-found: error

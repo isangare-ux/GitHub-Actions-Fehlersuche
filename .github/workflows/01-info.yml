@@ -1,0 +1,22 @@
+name: 01 Info Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skripte ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Info Skript starten
+        # HINWEIS: Hier ist ein Fehler. Vergleiche den Pfad mit der Projektstruktur.
+        run: bash script/01_info.sh

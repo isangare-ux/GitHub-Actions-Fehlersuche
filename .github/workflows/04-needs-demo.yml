@@ -1,0 +1,94 @@
+name: 04 Needs Demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skripte ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Dateien prüfen
+        run: bash scripts/02_check_files.sh
+
+  count:
+    runs-on: ubuntu-latest
+    needs: check
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skripte ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Namen zählen
+        run: bash scripts/03_count_names.sh
+
+      - name: Zählergebnis hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: name-count
+          path: output/anzahl.txt
+
+  report:
+    runs-on: ubuntu-latest
+    needs: count
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skripte ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Zählergebnis herunterladen
+        uses: actions/download-artifact@v4
+        with:
+          # HINWEIS: Hier ist ein Fehler. Vergleiche diesen Namen mit dem Upload im vorherigen Job.
+          name: anzahl
+          path: output
+
+      - name: Report erstellen
+        run: bash scripts/04_create_report.sh
+
+      - name: Report hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: output/report.txt
+
+  package:
+    runs-on: ubuntu-latest
+    needs: report
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skripte ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Report herunterladen
+        uses: actions/download-artifact@v4
+        with:
+          name: report
+          path: output
+
+      - name: Paket erstellen
+        run: bash scripts/05_package.sh
+
+      - name: Paket hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: projekt-paket
+          path: output/projekt_paket.tar.gz
