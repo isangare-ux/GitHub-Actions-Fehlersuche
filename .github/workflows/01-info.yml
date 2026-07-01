@@ -19,4 +19,4 @@ jobs:
 
       - name: Info Skript starten
         # HINWEIS: Hier ist ein Fehler. Vergleiche den Pfad mit der Projektstruktur.
-        run: bash script/01_info.sh
+        run: bash scripts/01_info.sh
